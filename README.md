@@ -1,0 +1,2 @@
+Created a real-time stock data analysis platform leveraging Django Rest API, SQL, HTML, CSS, and JavaScript. Provided dynamic financial dashboards displaying company details, stock prices, volume, moving averages, 
+and market trends. Implemented data scraping and API integration to fetch live stock market data from various financial sources. Developed customized data visualization using Chart.js and D3.js, enhancing financial insights for users. 
