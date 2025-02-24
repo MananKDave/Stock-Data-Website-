@@ -1,0 +1,162 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company_name }} Stock Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Your Company</a>
+        <!-- Add any additional navigation elements as needed -->
+    </nav>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h1 class="display-5">{{ company_name }} - {{ search_query }}</h1><br>
+                    <p class="lead">{{ current_price }} {{ format_price_formatted|safe }}</p>
+                </div>
+            </div>
+            <div class="card shadow">
+                <div class="card-body">
+                    <div id="historical-chart" class="">
+                        <p class="card-text"><strong>Average Total Volume:</strong> {{ avgtotalvolume }} </p>
+                         <img src="{% static 'images/historical_chart.png' %}" alt="{{ symbol }} Historical Closing Prices">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="card-title text-primary">Open and Close</h2>
+                            <p class="card-text"><strong>Open:</strong> {{ open_price }}</p>
+                            <p class="card-text"><strong>Previous Close:</strong> {{ prev_close }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="card-title text-primary">High and Low</h2>
+                            <p class="card-text"><strong>Day High:</strong> {{ day_high }}</p>
+                            <p class="card-text"><strong>Day Low:</strong> {{ day_low }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card0 shadow">
+                        <div class="card-body">
+                            <h2 class="card-title text-primary">Moving Average</h2><br>
+
+                            <!-- Partition for 10-day SMA -->
+                            <div class="col-md-12 mb-4">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">10-Day</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:12px;">{{ avg_10 }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Partition for 20-day SMA -->
+                            <div class="col-md-12 mb-4">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">20-Day</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:12px;">{{ avg_20 }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                        <!-- Add content specific to the 20-day SMA here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Partition for 50-day SMA -->
+                            <div class="col-md-12 mb-4">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">50-Day</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:12px;">{{ avg_50 }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                        <!-- Add content specific to the 50-day SMA here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Partition for 100-day SMA -->
+                            <div class="col-md-12">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">100-Day</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:10px;">{{ avg_100 }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                        <!-- Add content specific to the 100-day SMA here -->
+                                    </div>
+                                </div>
+                            </div> <br><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card card0 shadow">
+                        <div class="card-body">
+                            <h2 class="card-title text-primary">Returns</h2><br>
+
+                            <!-- Partition for 10-day SMA -->
+                            <div class="col-md-12 mb-4">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">1 Week</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:12px; color: {{ 1_week_color }};">{{ 1_week }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Partition for 20-day SMA -->
+                            <div class="col-md-12 mb-4">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">1 Month</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:12px; color: {{ 1_month_color }};">{{ 1_month }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                        <!-- Add content specific to the 20-day SMA here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Partition for 50-day SMA -->
+                            <div class="col-md-12 mb-4">
+                                <div class="card border-success shadow">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">3 month</h5> <p class="text-right" style="margin-top:-30px; margin-bottom:8px; color: {{ 3_month_color }};">{{ 3_month }}</p>
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                        <!-- Add content specific to the 50-day SMA here -->
+                                    </div>
+                                </div>
+                            </div> <br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-4 bg-dark text-white text-center">
+        <p>&copy; 2023 Your Company</p>
+    </footer>
+
+    <!-- Include necessary scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{% static 'js/financial_data.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #007bff;
+}
+
+.container {
+    max-width: 1300px;
+}
+
+.card {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.card0 {
+   margin-right: 10px;
+   margin-left: -10px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.chart-container {
+    height: 300px; /* Set an appropriate height for the chart container */
+}
+
+.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    padding: 30px;
+}
+
+/* Add more styles as needed */
